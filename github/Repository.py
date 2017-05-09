@@ -2245,7 +2245,7 @@ class Repository(github.GithubObject.CompletableGithubObject):
             headers={'Accept': 'application/vnd.github.loki-preview+json'}
         )
 
-    def set_branch_protection(self, branch, require_review_all=False, require_review=None, restrictions=None, **required_status_checks):
+    def set_branch_protection(self, branch, enforce_admins=False, require_review_all=False, require_review=None, restrictions=None, **required_status_checks):
         """
         :calls: `PUT /repos/:owner/:repo/branches/:branch/protection <https://developer.github.com/v3/repos/branches/#update-branch-protection>`_
         :param branch: string
@@ -2269,6 +2269,7 @@ class Repository(github.GithubObject.CompletableGithubObject):
             input={
                 'required_status_checks': required_status_checks,
                 'required_pull_request_reviews': require_review,
+                'enforce_admins': enforce_admins,
                 'restrictions' : restrictions
             },
             headers={'Accept': 'application/vnd.github.loki-preview+json'}
